@@ -5,15 +5,25 @@
   "author": "Firebase (https://firebase.google.com/)",
   "license": "Apache-2.0",
   "scripts": {
-    "bootstrap": "lerna bootstrap --no-ci",
-    "lint": "lerna run lint",
-    "test": "lerna run test",
-    "compile": "lerna run compile --concurrency=8"
+    "bootstrap": "pnpm -r install",
+    "lint": "pnpm -r --workspace-concurrency=4 --aggregate-output run lint",
+    "test": "pnpm -r --workspace-concurrency=4 --aggregate-output run test ",
+    "compile": "pnpm -r --workspace-concurrency=4 --aggregate-output run compile "
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "lerna": "^3.20.2",
-    "typescript": "^3.8.2"
+    "eslint": "^8.44.0",
+    "pnpm": "^8.2.0",
+    "typescript": "^5.0.4"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@firebase/app-compat",
+        "@firebase/app-types"
+      ]
+    }
   }
 }

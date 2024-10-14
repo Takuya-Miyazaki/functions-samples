@@ -1,0 +1,21 @@
+{
+  "functions": {
+    "codebase": "instagram-auth"
+  },
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "public": "public",
+    "rewrites": [
+      {
+        "source": "/redirect",
+        "function": "redirect"
+      },
+      {
+        "source": "/token",
+        "function": "token"
+      }
+    ]
+  }
+}

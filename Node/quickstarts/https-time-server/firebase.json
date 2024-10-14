@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "codebase": "https-time-server",
+    "predeploy": [
+      "npm --prefix \"$RESOURCE_DIR\" run lint"
+    ]
+  }
+}

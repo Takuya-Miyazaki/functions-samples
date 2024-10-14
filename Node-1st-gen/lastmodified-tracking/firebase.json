@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "codebase": "lastmodified-tracking"
+  },
+  "database": {
+    "rules": "database.rules.json"
+  }
+}
