@@ -12,22 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: CI Tests
+name: 2nd Gen CI Tests
 
 on:
   pull_request:
     paths:
       - 'Node/**'
-      - 'Node-1st-gen/**'
       - 'package.json'
       - 'package-lock.json'
       - 'pnpm-workspace.yaml'
       - 'pnpm-lock.yaml'
       - 'tsconfig.template.json'
   push:
+    branches:
+      - main
     paths:
       - 'Node/**'
-      - 'Node-1st-gen/**'
       - 'package.json'
       - 'package-lock.json'
       - 'pnpm-workspace.yaml'
@@ -43,21 +43,23 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 18.x
+          # The latest Node version for 2nd gen
+          # https://cloud.google.com/functions/docs/runtime-support#node.js
+          - 22.x
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Cache npm
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
 
       - run: npm install
-      - run: npm run bootstrap
-      - run: npm run lint
-      - run: npm run compile
-      - run: npm run test
+      - run: npm run bootstrap-2nd-gen
+      - run: npm run lint-2nd-gen
+      - run: npm run compile-2nd-gen
+      - run: npm run test-2nd-gen
