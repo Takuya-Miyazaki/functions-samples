@@ -13,9 +13,9 @@
   },
   "scripts": {
     "ci-test": "npm install && npm run test",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest test/test.offline.test.js",
-    "test-online": "NODE_OPTIONS=--experimental-vm-modules jest test/test.online.test.js",
-    "test-offline": "NODE_OPTIONS=--experimental-vm-modules jest test/test.offline.test.js",
+    "test": "jest test/offline.test.js",
+    "test-online": "jest test/online.test.js",
+    "test-offline": "jest test/offline.test.js",
     "serve": "firebase emulators:start --only functions",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
